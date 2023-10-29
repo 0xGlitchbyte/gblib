@@ -82,9 +82,26 @@ typedef unsigned short u16;
 typedef unsigned int u32;
 typedef float f32;
 typedef double f64;
-// !TODO:need to define true 64 bit; i64 and u64
 
+// 64 bit ints
+#include <limits.h>
 
+#if LONG_MAX == 9223372036854775807L
+    // On platforms where 'long' is 64 bits (common on many modern systems)
+    typedef long i64;
+    typedef unsigned long u64;
+#elif INT_MAX == 9223372036854775807L
+    // On platforms where 'int' is 64 bits
+    typedef int i64;
+    typedef unsigned int u64;
+#else
+    #error "No 64-bit integer type available on this platform."
+#endif
+
+// Boolean defined
+typedef int bool;
+#define True 1
+#define False 0
 
 
 
