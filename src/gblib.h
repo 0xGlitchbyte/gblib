@@ -103,8 +103,36 @@ typedef int bool;
 #define True 1
 #define False 0
 
+#define STACK
 
+// Struct for a node in the stack 
+struct Node {
+  int data;          // data stored in node
+  struct Node* next; // Pointer to next node
+};
 
+// Struct for the stack
+struct Stack {
+  struct Node* top; // Pointer to top of stack 
+};
+
+// Create an empty stack
+struct Stack* new_stack();
+
+// Push an element onto stack
+void push(struct Stack* stack, int data);
+
+// Pop an element from stack
+int pop(struct Stack* stack);
+
+// Check if stack is empty
+int is_empty(struct Stack* stack);
+
+// Print elements in the stack
+void print_stack(struct Stack* stack);
+
+// Free memory allocated for the stack
+void free_stack(struct Stack* stack);
 
 
 #endif //BASE_H
