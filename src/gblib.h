@@ -134,5 +134,31 @@ void print_stack(struct Stack* stack);
 // Free memory allocated for the stack
 void free_stack(struct Stack* stack);
 
+#ifndef DOUBLE_LINKED_LIST
+
+// Struct for node for DLL
+struct Node {
+  int data;
+  struct Node* next;
+  struct Node* prev;
+}
+
+// Create a new node with given data
+struct Node* new_node(int data);
+
+// Insert node at beginning of list
+void insert_beginning(struct Node** head, int data);
+
+// Insert at end of list
+void insert_end(struct Node** head, int data);
+
+// Print list forward
+void print_forward(struct Node* head);
+
+// Print list backward
+void print_backward(struct Node* head);
+
+// Free memory alocated for list
+void free_linkedlist(struct Node* head);
 
 #endif //BASE_H
