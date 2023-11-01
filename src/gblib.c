@@ -60,3 +60,81 @@ void free_stack(struct Stack* stack){
   }
   free(stack);
 }
+
+/*
+ * Double Linked List implementation 
+ */
+
+// Create new node of data
+struct Node* new_node (int data) {
+    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+    if (new_node == NULL){
+        fprintf(stderr, "Memory allocation failed.\n");
+        exit(1);
+    }
+    new_node->data = data;
+    new_node->next = NULL;
+    new_node->prev = NULL;
+    return new_node;
+}
+
+// Insert node at beginning of linked list
+void insert_beginning(struct Node** head, int data) {
+    struct Node* new_node = new_node(data);
+    new_node->next = *head;
+    if (*head != NULL) {
+       (*head)->prev = new_node;
+    }
+    *head = new_node;
+}
+
+// Insert node at end of linked list
+void insert_end(struct Node** head, int data) {
+   struct Node* new_node = new_node(data);
+   if (*head == NULL) {
+       *head = new_node;
+   }
+   else {
+      struct Node* current = *head;
+      while (current->next != NULL) {
+          current = current->next;
+      }
+      current->next = new_node;
+      new_node->prev = current;
+   }
+}
+
+// Print linked list forward
+void print_forward(struct Node* head) {
+    struct Node* currrent = head;
+    printf("Forward: ");
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+// Print linked list backward
+void print_backward(struct Node* head) {
+    struct Node* current = head;
+    while (current != NULL && current->next != NULL) {
+        current = current->next;
+    }
+    printf("Backward: ");
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->prev;
+    }
+    printf("NULL\n");
+}
+
+// Free memory allocated for linked list
+void free_linked_list(struct Node* head) {
+    struct Node* current = head;
+    while (current != NULL) {
+        struct Node* temp = current;
+        current = current->next;
+        free(temp);
+    }
+}
