@@ -1,8 +1,7 @@
 // Microsoft Visual Studio Compiler
 // Clang support
 // GCC support
-
-
+//
 #ifndef BASE_H
 #define BASE_H
 
@@ -134,31 +133,31 @@ void print_stack(struct Stack* stack);
 // Free memory allocated for the stack
 void free_stack(struct Stack* stack);
 
-#ifndef DOUBLE_LINKED_LIST
+#define DOUBLE_LINKED_LIST
 
 // Struct for node for DLL
-struct Node {
+struct DLLNode {
   int data;
   struct Node* next;
   struct Node* prev;
-}
+};
 
 // Create a new node with given data
-struct Node* new_node(int data);
+struct DLLNode* new_node(int data);
 
 // Insert node at beginning of list
-void insert_beginning(struct Node** head, int data);
+void insert_beginning(struct DLLNode** head, int data);
 
 // Insert at end of list
-void insert_end(struct Node** head, int data);
+void insert_end(struct DLLNode** head, int data);
 
 // Print list forward
-void print_forward(struct Node* head);
+void print_forward(struct DLLNode* head);
 
 // Print list backward
-void print_backward(struct Node* head);
+void print_backward(struct DLLNode* head);
 
 // Free memory alocated for list
-void free_linkedlist(struct Node* head);
+void free_linkedlist(struct DLLNode* head);
 
 #endif //BASE_H

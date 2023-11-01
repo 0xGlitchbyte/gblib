@@ -66,8 +66,8 @@ void free_stack(struct Stack* stack){
  */
 
 // Create new node of data
-struct Node* new_node (int data) {
-    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+struct DLLNode* new_node (int data) {
+    struct DLLNode* new_node = (struct DLLNode*)malloc(sizeof(struct Node));
     if (new_node == NULL){
         fprintf(stderr, "Memory allocation failed.\n");
         exit(1);
@@ -79,8 +79,8 @@ struct Node* new_node (int data) {
 }
 
 // Insert node at beginning of linked list
-void insert_beginning(struct Node** head, int data) {
-    struct Node* new_node = new_node(data);
+void insert_beginning(struct DLLNode** head, int data) {
+    struct DLLNode* new_node = new_node(data);
     new_node->next = *head;
     if (*head != NULL) {
        (*head)->prev = new_node;
@@ -89,13 +89,13 @@ void insert_beginning(struct Node** head, int data) {
 }
 
 // Insert node at end of linked list
-void insert_end(struct Node** head, int data) {
-   struct Node* new_node = new_node(data);
+void insert_end(struct DLLNode** head, int data) {
+   struct DLLNode* new_node = new_node(data);
    if (*head == NULL) {
        *head = new_node;
    }
    else {
-      struct Node* current = *head;
+      struct DLLNode* current = *head;
       while (current->next != NULL) {
           current = current->next;
       }
@@ -105,8 +105,8 @@ void insert_end(struct Node** head, int data) {
 }
 
 // Print linked list forward
-void print_forward(struct Node* head) {
-    struct Node* currrent = head;
+void print_forward(struct DLLNode* head) {
+    struct DLLNode* currrent = head;
     printf("Forward: ");
     while (current != NULL) {
         printf("%d -> ", current->data);
@@ -116,8 +116,8 @@ void print_forward(struct Node* head) {
 }
 
 // Print linked list backward
-void print_backward(struct Node* head) {
-    struct Node* current = head;
+void print_backward(struct DLLNode* head) {
+    struct DLLNode* current = head;
     while (current != NULL && current->next != NULL) {
         current = current->next;
     }
@@ -130,10 +130,10 @@ void print_backward(struct Node* head) {
 }
 
 // Free memory allocated for linked list
-void free_linked_list(struct Node* head) {
-    struct Node* current = head;
+void free_linked_list(struct DLLNode* head) {
+    struct DLLNode* current = head;
     while (current != NULL) {
-        struct Node* temp = current;
+        struct DLLNode* temp = current;
         current = current->next;
         free(temp);
     }
