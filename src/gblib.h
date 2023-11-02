@@ -133,6 +133,32 @@ void print_stack(struct Stack* stack);
 // Free memory allocated for the stack
 void free_stack(struct Stack* stack);
 
+#define QUEUE
+
+// Struct for empty queue 
+struct Queue {
+  struct Node* front; // Front of queue
+  struct Node* rear; // Rear of queue
+}
+
+// Create an empty queue
+struct Queue* init_queue();
+
+// Enqueue element at rear of queue
+void enqueue(struct Queue* queue, int data);
+
+// Dequeue element from front of queue
+int dequeue(struct Queue* queue);
+
+// Check if queue is empty
+int is_empty(struct Queue* queue);
+
+// Print queue
+void print_queue(struct Queue* queue);
+
+// Free memory allocated for queue
+void free_queue(struct Queue* queue);
+
 #define DOUBLE_LINKED_LIST
 
 // Struct for node for DLL

@@ -61,6 +61,77 @@ void free_stack(struct Stack* stack){
   free(stack);
 }
 
+/////////////
+/// Queue ///
+/////////////
+
+struct Queue* init_queue() {
+  struct Queue* queue = (struct Queue*)malloc(sifzeof(struct Queue));
+  if (queue == NULL) {
+    fprintf(stderr, "Memory allocation failed.\n");
+    exit(1);
+  }
+  queue->front = NULL;
+  queue->rear = NULL;
+  return queue;
+}
+
+// Enqueue element to rear of queue
+void enqueue(struct Queue* queue, int data) {
+  struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+  if (new_node == NULL) {
+    fprintf(stderr, "Memory allocation failed.\n");
+    exit(1);
+  }
+  new_node->data = data;
+  new_node->next = NULL;
+  if (is_empty(queue)) {
+    queue->front = new_node;
+    queue->rear = new_node;
+  }
+  else {
+    queue->rear->next = new_node;
+    queue->rear = new_node;
+  }
+}
+
+// Dequeue element at rear of queue
+int dequeue(struct Queue* queue) {
+  if (is_empty(queue)){
+    fprintf(stderr, "Queue is empty. Cannot dequeue.\n");
+    exit(1);
+  }
+  int data = queue->front->data;
+  struct Node* temp = queue->front;
+  queue->front = queue->front->next;
+  free(temp);
+  return data;
+}
+
+// Check if queue is empty
+int is_queue_empty(struct Queue* queue) {
+  return queue-> == NULL;
+}
+
+// Print elements in queue
+void print_queue(struct Queue* queue) {
+  struct Node* current = queue->front;
+  printf("Queue: ");
+  while (current != NULL) {
+    printf("%d <- ", current-data);
+    current = current->next;
+  }
+  printf("NULL\n");
+}
+
+// Free memory from queue
+void free_queue(struct Queue* queue) {
+  while (!is_empty(queue)) {
+    dequeue(queue);
+  }
+  free(queue);
+}
+
 /*
  * Double Linked List implementation 
  */
