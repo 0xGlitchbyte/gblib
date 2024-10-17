@@ -2,8 +2,8 @@
 // Clang support
 // GCC support
 //
-#ifndef BASE_H
-#define BASE_H
+#ifndef DEFINES_H
+#define DEFINES_H
 
 // Determine which compiler is available
 #if defined(_MSC_VER)
@@ -101,5 +101,3 @@ typedef double f64;
 typedef int bool;
 #define True 1
 #define False 0
-
-
